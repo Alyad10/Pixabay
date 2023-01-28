@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     var adapter = ImageAdapter()
     private var page = 1
-    private var isFirst = true
     private lateinit var layoutManager: LinearLayoutManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +34,6 @@ class MainActivity : AppCompatActivity() {
     private fun initClickers() {
         with(binding) {
             btnFetch.setOnClickListener {
-                isFirst = true
-                page = 1
                 doRequest()
             }
         }
@@ -61,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun doRequest() {
+        download = true
         binding.progressBar.visibility = View.VISIBLE
         RetrofitService().api.getImage(
             binding.etInput.text.toString(),
@@ -68,10 +66,9 @@ class MainActivity : AppCompatActivity() {
         ).enqueue(object : Callback<PixaModel> {
             override fun onResponse(call: Call<PixaModel>, response: Response<PixaModel>) {
                 if (response.isSuccessful) {
-                    adapter.setItems(response.body()?.hits!!, isFirst)
+                    adapter.setItems(response.body()?.hits!!)
                     Log.d("image_data-data", "${response.body()}")
                     download = false
-                    isFirst = false
                     binding.progressBar.visibility = View.GONE
 
                 } else {

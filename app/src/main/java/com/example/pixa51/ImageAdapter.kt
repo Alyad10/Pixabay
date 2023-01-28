@@ -22,17 +22,10 @@ class ImageAdapter() :
         )
 
     }
-    fun setItems(list: ArrayList<ImageModel>, isFree: Boolean) {
-        if (isFree) {
-            this.list.clear()
-            this.list.addAll(list)
-            notifyDataSetChanged()
-
-        }else{
+    fun setItems(list: ArrayList<ImageModel>) {
             this.list.addAll(list)
             notifyItemChanged(list.size - 1)
 
-        }
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
