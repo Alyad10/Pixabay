@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import coil.load
 import com.bumptech.glide.Glide
 import com.example.pixa51.databinding.ItemImageBinding
 
@@ -22,7 +21,7 @@ class ImageAdapter() :
         )
 
     }
-    fun setItems(list: ArrayList<ImageModel>) {
+    fun setImages(list: ArrayList<ImageModel>) {
             this.list.addAll(list)
             notifyItemChanged(list.size - 1)
 

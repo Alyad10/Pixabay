@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         ).enqueue(object : Callback<PixaModel> {
             override fun onResponse(call: Call<PixaModel>, response: Response<PixaModel>) {
                 if (response.isSuccessful) {
-                    adapter.setItems(response.body()?.hits!!)
+                    adapter.setImages(response.body()?.hits!!)
                     Log.d("image_data-data", "${response.body()}")
                     download = false
                     binding.progressBar.visibility = View.GONE
